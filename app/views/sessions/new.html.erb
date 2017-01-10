@@ -4,17 +4,20 @@
             <div class="col-sm-7">
                 <div class="header-content">
                     <div class="header-content-inner">
-                        <h1>Workout tracker is an app that helps you keep your goals and track the time spent exercising</h1>
-												<%= link_to "Sign up now!", "#download", class: "btn btn-outline btn-xl page-scroll" %>
+                        <h1>Workout tracker is an app that helps you achieve your goals!</h1>
+												<%= link_to "Sign up now!", "#signup", class: "btn btn-outline btn-xl page-scroll" %>
                     </div>
                 </div>
             </div>
             <div class="col-sm-5">
                 <div class="login-container">
+									<h2>Log in!</h2>
 									<%= form_for(:session, url: login_path) do |f| %>
-										<%= f.email_field :email, :placeholder => "Email" %>
-										<%= f.password_field :password, :placeholder => "Password" %>
-										<%= f.submit "Log in", class: "btn-submit" %>
+										<label>Email</label>
+										<%= f.email_field :email, :placeholder => "Email", class: "form-control" %>
+										<label>Password</label>
+										<%= f.password_field :password, :placeholder => "Password", class: "form-control" %>
+										<%= f.submit "Log in", class: "btn btn-submit" %>
 									<% end %>
                 </div>
             </div>
@@ -22,17 +25,21 @@
     </div>
 </header>
 
-<section id="download" class="download bg-primary text-center">
+<section id="signup" class="signup bg-primary text-center">
 	<div class="container">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
 						<h2>Sign up!</h2>
 						<%= form_for(@user, url: signup_path) do |f| %>
-							<%= f.text_field :first_name, :placeholder => "First name" %>
-							<%= f.text_field :last_name, :placeholder => "Last name" %>
-							<%= f.email_field :email, :placeholder => "Email" %>
-							<%= f.password_field :password, :placeholder => "Password" %>
-							<%= f.submit "Create an account", class: "btn-submit" %>
+							<label>First name</label>
+							<%= f.text_field :first_name, :placeholder => "First name", class: "form-control" %>
+							<label>Last name</label>
+							<%= f.text_field :last_name, :placeholder => "Last name", class: "form-control" %>
+							<label>Email</label>
+							<%= f.email_field :email, :placeholder => "Email", class: "form-control" %>
+							<label>Password</label>
+							<%= f.password_field :password, :placeholder => "Password", class: "form-control" %>
+							<%= f.submit "Create an account", class: "btn btn-submit" %>
 						<% end %>
           </div>
       </div>
