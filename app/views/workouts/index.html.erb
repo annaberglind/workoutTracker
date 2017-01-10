@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Workouts</h1>
+<div id="workout_chart" style="height: 300px; width: 80%;"></div>
 
 <table>
   <thead>
     <tr>
       <th>Duration</th>
-      <th>Date performed</th>
+      <th>Date performed!</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,7 +23,71 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Workout', new_workout_path %>
+
+<script type="text/javascript">
+$(function () {
+  console.log('yeah ');
+
+  $.ajax({
+    type: 'GET',
+    url: '/workouts.json',
+    success: function(res){
+      console.log(res);
+      var chartSeries = [];
+      var data = [];
+
+      for (var i = 0; i < res.length; i++) {
+        data.push([res[i].date_performed*1000, res[i].duration]);
+      }
+
+      console.log(data);
+      var myChart = Highcharts.chart('workout_chart', {
+        chart: {
+          type: 'column'
+        },
+          title: {
+              text: 'Workouts'
+          },
+          xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: { // don't display the dummy year
+              second: '%H:%M:%S',
+              minute: '%H:%M',
+              hour: '%H:%M',
+              day: '%a %e. %b',
+              week: '%e. %b',
+              month: '%b \'%y',
+              year: '%Y'
+            },
+            title: {
+                text: 'Workout date',
+                margin: 10
+            },
+            tickLength: 0,
+            lineWidth: 0,
+            startOnTick: false,
+            endOnTick: false,
+            minRange: 3600000, // Can only zoom in to one day
+            minTickInterval: 3600000
+          },
+          yAxis: {
+              title: {
+                  text: 'Minutes'
+              }
+          },
+          series: [{
+            name: 'Workouts',
+            data: data
+        }]
+      });
+    },
+    error: function(res) {
+      console.log('ERROR');
+      console.log(res);
+    }
+  });
+});
+</script>

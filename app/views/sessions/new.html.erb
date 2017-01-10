@@ -1,15 +1,40 @@
-<div class="login">
-	<div class="container">
-		<div class="form">
-
-      <h1>Log in</h1>
-					
-			<%= form_for(:session, url: login_path) do |f| %> 
-			  <%= f.email_field :email, :placeholder => "Email" %> 
-			  <%= f.password_field :password, :placeholder => "Password" %> 
-			  <%= f.submit "Log in", class: "btn-submit" %>
-			<% end %>
-		
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="header-content">
+                    <div class="header-content-inner">
+                        <h1>Workout tracker is an app that helps you keep your goals and track the time spent exercising</h1>
+												<%= link_to "Sign up now!", "#download", class: "btn btn-outline btn-xl page-scroll" %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="login-container">
+									<%= form_for(:session, url: login_path) do |f| %>
+										<%= f.email_field :email, :placeholder => "Email" %>
+										<%= f.password_field :password, :placeholder => "Password" %>
+										<%= f.submit "Log in", class: "btn-submit" %>
+									<% end %>
+                </div>
+            </div>
+        </div>
     </div>
-	</div>
-</div>
+</header>
+
+<section id="download" class="download bg-primary text-center">
+	<div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+						<h2>Sign up!</h2>
+						<%= form_for(@user, url: signup_path) do |f| %>
+							<%= f.text_field :first_name, :placeholder => "First name" %>
+							<%= f.text_field :last_name, :placeholder => "Last name" %>
+							<%= f.email_field :email, :placeholder => "Email" %>
+							<%= f.password_field :password, :placeholder => "Password" %>
+							<%= f.submit "Create an account", class: "btn-submit" %>
+						<% end %>
+          </div>
+      </div>
+  </div>
+</section>
