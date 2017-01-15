@@ -11,6 +11,7 @@
             </div>
             <div class="col-sm-5">
                 <div class="login-container">
+                  <p id="notice" style="color: white;"><%= notice %></p>
 									<h2>Log in!</h2>
 									<%= form_for(:session, url: login_path) do |f| %>
 										<label>Email</label>

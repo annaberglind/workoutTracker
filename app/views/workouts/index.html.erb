@@ -16,26 +16,6 @@
         <h3>Weekly average: <%= @average %></h3>
         <%= link_to 'New Workout', new_workout_path, class: 'btn btn-outline'%>
       </div>
-      <table class="table workout-table">
-        <thead>
-          <tr>
-            <th>Duration</th>
-            <th>Date performed</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @workouts.each do |workout| %>
-            <tr>
-              <td><%= workout.duration %></td>
-              <td><%= workout.date_performed %></td>
-              <td><%= link_to 'Edit', edit_workout_path(workout), class: 'btn' %></td>
-              <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
     </div>
     <div id="list" class="tab-pane fade">
       <table class="table workout-table">

@@ -8,11 +8,15 @@ class WorkoutsController < ApplicationController
     @workouts = Workout.where("user_id = #{current_user.id}").order('created_at DESC')
     workoutsByWeek = Workout.where("user_id = #{current_user.id}").group("DATE_TRUNC('week', date_performed)").count
 
-    sum = 0
-    workoutsByWeek.each do |workout|
-       sum += workout[1]
+    if workoutsByWeek.length != 0
+      sum = 0
+      workoutsByWeek.each do |workout|
+         sum += workout[1]
+      end
+      @average = sum / workoutsByWeek.length
+    else
+      @average = 0
     end
-    @average = sum / workoutsByWeek.length
   end
 
   # GET /workouts/1
