@@ -1,0 +1,131 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ html,
+ body {
+   height: 100%;
+   width: 100%;
+ }
+
+ body {
+   font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+ }
+
+ a {
+   -webkit-transition: all 0.35s;
+   -moz-transition: all 0.35s;
+   transition: all 0.35s;
+   color: #fdcc52;
+ }
+
+ a:hover,
+ a:focus {
+   color: #fcbd20;
+ }
+
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+   font-weight: 200;
+   letter-spacing: 1px;
+ }
+
+ p {
+   font-size: 18px;
+   line-height: 1.5;
+   margin-bottom: 20px;
+ }
+
+input {
+  margin: 5px;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  // height: 100%;
+  overflow-y: hidden;
+  min-height: auto;
+  background: image-url('bg-pattern.png'), #7b4397;
+  /* fallback for old browsers */
+  background: image-url('bg-pattern.png'), -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: image-url('bg-pattern.png'), linear-gradient(to left, #7b4397, #dc2430);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+  .container:first-child {
+    margin-top: 70px;
+    margin-bottom: 50px;
+  }
+
+  .container {
+    background: #fff;
+    -webkit-box-shadow: 6px 7px 21px -6px rgba(94,94,94,0.8);
+    -moz-box-shadow: 6px 7px 21px -6px rgba(94,94,94,0.8);
+    box-shadow: 6px 7px 21px -6px rgba(94,94,94,0.8);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+body {
+  webkit-tap-highlight-color: #222222;
+}
+
+.btn-outline {
+  color: white;
+  border-color: white;
+  border: 1px solid;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+  color: white;
+  background-color: #fdcc52;
+  border-color: #fdcc52;
+}
+
+.btn {
+  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 300px;
+}
+
+.btn-xl {
+  padding: 15px 45px;
+  font-size: 11px;
+}
+
+.page-header {
+  padding: 1px 65px;
+  margin: 30px 0 10px;
+  border: 0px;
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 5px;
+    padding-top: 15px;
+  }
+}

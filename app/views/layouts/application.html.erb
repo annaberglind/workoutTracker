@@ -4,24 +4,19 @@
     <title>WorkoutTracker</title>
     <%= csrf_meta_tags %>
 
+    <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!-- Highcharts -->
     <script src="http://code.highcharts.com/highcharts.js"></script>
-
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
     <!-- Plugin CSS -->
     <script src="https://use.fontawesome.com/bb980340a1.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
 
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
-
-
-    <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 
   <body id="page-top">
@@ -32,7 +27,11 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Workout Tracker</a>
+                <% if current_user %>
+                  <%= link_to 'Workout Tracker', workouts_path, class: 'navbar-brand' %>
+                <% else %>
+                  <a class="navbar-brand page-scroll" href="#page-top">Workout Tracker</a>
+                <% end %>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,7 +39,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <% if current_user %>
                     <li>
-                      <%= current_user %>
+                      <a><%= current_user %></a>
                     </li>
                     <li>
                   	  <%= link_to "Log out", logout_path, method: "delete", class: "page-scroll" %>
@@ -59,7 +58,11 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <div class="main">
+    <% if !current_user %>
+      <div class="login">
+    <% else %>
+      <div class="main ">
+    <% end %>
       <%= yield %>
     </div>
 

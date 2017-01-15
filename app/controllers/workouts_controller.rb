@@ -6,6 +6,13 @@ class WorkoutsController < ApplicationController
   # GET /workouts.json
   def index
     @workouts = Workout.where("user_id = #{current_user.id}").order('created_at DESC')
+    workoutsByWeek = Workout.where("user_id = #{current_user.id}").group("DATE_TRUNC('week', date_performed)").count
+
+    sum = 0
+    workoutsByWeek.each do |workout|
+       sum += workout[1]
+    end
+    @average = sum / workoutsByWeek.length
   end
 
   # GET /workouts/1
@@ -30,8 +37,8 @@ class WorkoutsController < ApplicationController
 
     respond_to do |format|
       if @workout.save
-        format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
-        format.json { render :show, status: :created, location: @workout }
+        format.html { redirect_to action: "index", notice: 'Workout was successfully created.' }
+        format.json { render :index, status: :created, location: @workout }
       else
         format.html { render :new }
         format.json { render json: @workout.errors, status: :unprocessable_entity }
@@ -45,7 +52,7 @@ class WorkoutsController < ApplicationController
     respond_to do |format|
       if @workout.update(workout_params)
         format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
-        format.json { render :show, status: :ok, location: @workout }
+        format.json { render :index, status: :ok, location: @workout }
       else
         format.html { render :edit }
         format.json { render json: @workout.errors, status: :unprocessable_entity }
